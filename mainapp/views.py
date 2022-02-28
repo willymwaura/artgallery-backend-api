@@ -78,13 +78,13 @@ class deletenotification(APIView):
 
 class getproductid(APIView):
    def get(self,request,pk):
-      s=Product.objects.filter(email=pk)
+      s=Product.objects.filter(id=pk)
       serializers=Productserializer(s,many=True)
       return Response(serializers.data)
 
 class getuserbyid(APIView):
    def get(self,request,pk):
-      s=User.objects.filter(email=pk)
+      s=User.objects.filter(id=pk)
       serializers=Userserializer(s,many=True)
       return Response(serializers.data)
 

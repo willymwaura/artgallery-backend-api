@@ -1,0 +1,83 @@
+ART GALLERY API DOCUMENTATION
+models
+(i)products
+Vary: Accept
+
+[
+    {
+        "id": 1,
+        "name": "html and css",
+        "price": 1000,
+        "imageurl": "/media/images/IMG20211116211033_5eVoc1a.jpg",
+        "category": 1,#reading id of art category
+        "designer": 1 #reading id of designer
+    }
+]
+(ii)users
+
+[
+    {
+        "id": 1,
+        "name": "science",
+        "email": "wilsonmwaura697@gmail.com",
+        "phonenumber": 400,
+        "accesstoken": "ggggg",
+        "refreshtoken": "gggggg",
+        "role": 1 #reading id of usercategory either designer ,admin,normal user
+    }
+]
+(iii)notification
+
+[
+    {
+        "id": 1,
+        "message": "you have sold 5 arts",
+        "title": "sales",
+        "designer": 1 #reading id of designer
+    }
+]
+(iv)cart
+
+[
+    {
+        "id": 1,
+        "name": "art1",
+        "price": 400,
+        "imageurl": "/media/images/IMG20211116211033_7y0L8R4.jpg",
+        "category": 1, #reading id of artcategory
+        "designer": 1 #reading id of designer
+    }
+]
+(v)Art category
+this catergory can only be handled by admin ,,He enter the art category
+(vi)user category
+this catergory can only be handled by admin ,,He enter the user  category for now there is normal user ,designer and admin
+
+Routes
+users/
+	get:all users
+	post :add user
+    products
+	get:all products
+	post :add products
+
+    deleteuser/{user_id}
+	delete:delete user
+    deleteproduct/{product_id}
+	delete:delete product
+    cart
+	get:all users
+	post :add user
+
+    deletecart/{cart_id}
+	delete:remove cart
+    notification
+	get:all notification
+	post :add notification
+
+    deletenotification/{not_id}
+	delete :remove not
+    getproductid/{product id }
+	get:specific product
+    getuserid/{user_id)
+	get:specific  user
