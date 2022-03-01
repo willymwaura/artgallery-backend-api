@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3s+b!p72#n*v#7$i8b7t4_!4owq&_75(3zzfe1n_$hp$%r!i*d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["artbackend.smiley-geek-codes.tech"]
+ALLOWED_HOSTS = ["artbackend.smiley-geek-codes.tech",'127.0.0.1']
 
 
 # Application definition
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django_daraja',
     'mainapp',
     'django.contrib.messages',
     'rest_framework',
@@ -127,3 +128,43 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL="/media/"
 MEDIA_ROOT=BASE_DIR/'media'
+# The Mpesa environment to use
+# Possible values: sandbox, production
+
+MPESA_ENVIRONMENT = 'sandbox'
+
+# Credentials for the daraja app
+
+MPESA_CONSUMER_KEY = 'tD4pH6DJPxegfGAIBx2dQhh7t6Aig7kj'
+MPESA_CONSUMER_SECRET = 'ap7qAoVZ5hIL4ocx'
+
+#Shortcode to use for transactions. For sandbox  use the Shortcode 1 provided on test credentials page
+
+MPESA_SHORTCODE = '600990'
+
+# Shortcode to use for Lipa na MPESA Online (MPESA Express) transactions
+# This is only used on sandbox, do not set this variable in production
+# For sandbox use the Lipa na MPESA Online Shorcode provided on test credentials page
+
+MPESA_EXPRESS_SHORTCODE = '174379'
+
+# Type of shortcode
+# Possible values:
+# - paybill (For Paybill)
+# - till_number (For Buy Goods Till Number)
+
+MPESA_SHORTCODE_TYPE = 'paybill'
+
+# Lipa na MPESA Online passkey
+# Sandbox passkey is available on test credentials page
+# Production passkey is sent via email once you go live
+
+MPESA_PASSKEY = 'express'
+
+# Username for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+
+MPESA_INITIATOR_USERNAME = 'testapI'
+
+# Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+
+MPESA_INITIATOR_SECURITY_CREDENTIAL = 'Safaricom990!'

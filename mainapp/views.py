@@ -1,11 +1,14 @@
 
 from django.shortcuts import render
-from django.http import HttpResponse, request, response
+from django.http import HttpResponse, JsonResponse, request, response
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.views import Response
-from mainapp.models import Cart, Notification, User,Product,Artcategory,Usercategory
+from mainapp.models import Cart, Notification, User,Product
 from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer
+from django.shortcuts import render
+from django.http import HttpResponse
+from django_daraja.mpesa.core import MpesaClient
 
 # Create your views here.
 class allproducts(APIView):
@@ -26,7 +29,7 @@ class allusers(APIView):
         serializer=Userserializer(users,many=True)
         return Response (serializer.data)
 
-    def post(self,request,pk):
+    def post(self,request):
         serializer=Userserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -87,5 +90,21 @@ class getuserbyid(APIView):
       s=User.objects.filter(id=pk)
       serializers=Userserializer(s,many=True)
       return Response(serializers.data)
+
+
+def stk(request):
+    cl = MpesaClient()
+    mpesa_stk_push_callback='https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query'
+    # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
+    phone_number = '254112100378'
+    amount = 1
+    account_reference = 'reference'
+    transaction_desc = 'Description'
+    callback_url = mpesa_stk_push_callback
+    response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
+    return HttpResponse(response)
+
+def stk_push_callback(request):
+        data = request.body
 
 

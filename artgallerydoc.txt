@@ -9,8 +9,9 @@ Vary: Accept
         "name": "html and css",
         "price": 1000,
         "imageurl": "/media/images/IMG20211116211033_5eVoc1a.jpg",
-        "category": 1,#reading id of art category
-        "designer": 1 #reading id of designer
+        "description":"blah blah",
+        "category": "painting",
+        "designer": "crush"
     }
 ]
 (ii)users
@@ -22,8 +23,9 @@ Vary: Accept
         "email": "wilsonmwaura697@gmail.com",
         "phonenumber": 400,
         "accesstoken": "ggggg",
+        "password":12324,
         "refreshtoken": "gggggg",
-        "role": 1 #reading id of usercategory either designer ,admin,normal user
+        "role": "user"
     }
 ]
 (iii)notification
@@ -33,7 +35,7 @@ Vary: Accept
         "id": 1,
         "message": "you have sold 5 arts",
         "title": "sales",
-        "designer": 1 #reading id of designer
+        "designer": "crush"
     }
 ]
 (iv)cart
@@ -44,14 +46,10 @@ Vary: Accept
         "name": "art1",
         "price": 400,
         "imageurl": "/media/images/IMG20211116211033_7y0L8R4.jpg",
-        "category": 1, #reading id of artcategory
-        "designer": 1 #reading id of designer
+        "category": "painting", 
+        "designer": "crush"
     }
 ]
-(v)Art category
-this catergory can only be handled by admin ,,He enter the art category
-(vi)user category
-this catergory can only be handled by admin ,,He enter the user  category for now there is normal user ,designer and admin
 
 Routes
 users/
@@ -77,7 +75,11 @@ users/
 
     deletenotification/{not_id}
 	delete :remove not
+
     getproductid/{product id }
 	get:specific product
+
     getuserid/{user_id)
 	get:specific  user
+    
+    NB:daraja api is being worked on 

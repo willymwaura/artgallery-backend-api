@@ -12,7 +12,9 @@ urlpatterns = [
     path('notification/',addnotification.as_view()),
     path('deletenotification/<int:pk>',deletenotification.as_view()),
     path('getproductid/<int:pk>',getproductid.as_view()),
-    path('getuserid/<int:pk>',getuserbyid.as_view())
+    path('getuserid/<int:pk>',getuserbyid.as_view()),
+    path('stk',views.stk,name='stk'),
+    path('stk-push',views.stk_push_callback,name='stkpush')
 
 
 ]

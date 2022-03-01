@@ -1,4 +1,4 @@
-                                                                        Dockerfile                                                                                  
+                                                                                                                                                     
 FROM python:3.8-slim-buster
 # set environment variables  
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -12,6 +12,7 @@ COPY . .
 # port where the Django app runs  
 
 RUN pip install django djangorestframework django-cors-headers gunicorn pillow
+RUN pip install django_daraja
 RUN pip install --upgrade django
 
 

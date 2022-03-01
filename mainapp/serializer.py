@@ -1,17 +1,5 @@
 from rest_framework import fields, serializers
-from . models import Product,Usercategory,User,Artcategory,Notification,Cart
-
-
-class Artcategoryserializer(serializers.ModelSerializer):
-    class Meta:
-        model=Artcategory
-        fields='__all__'
-
-
-class Usercategoryserializer(serializers.ModelSerializer):
-    class Meta:
-        model=Usercategory
-        fields='__all__'
+from . models import Product,User,Notification,Cart
        
 class Productserializer(serializers.ModelSerializer):
     class Meta:
