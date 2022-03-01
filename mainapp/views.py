@@ -6,8 +6,6 @@ from rest_framework.views import APIView
 from rest_framework.views import Response
 from mainapp.models import Cart, Notification, User,Product
 from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer
-from django.shortcuts import render
-from django.http import HttpResponse
 from django_daraja.mpesa.core import MpesaClient
 
 # Create your views here.
@@ -15,13 +13,14 @@ class allproducts(APIView):
     def get(self,request):
         products=Product.objects.all()
         serializer=Productserializer(products,many=True)
-        return Response (serializer.data)
+        return HttpResponse(serializer.data)
 
-    def post(self,request):
+    def post (self,request):
         serializer=Productserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return response(serializer.data)
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 class allusers(APIView):
     def get(self,request):
@@ -33,7 +32,8 @@ class allusers(APIView):
         serializer=Userserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return response(serializer.data)
+            return Response(serializer.data)
+        return Response(serializer.errors)
 class deleteproduct(APIView):
     def delete(Self,request,pk):
         product=Product.objects.get(id=pk)

@@ -1,4 +1,4 @@
-from rest_framework import fields, serializers
+from rest_framework import  serializers
 from . models import Product,User,Notification,Cart
        
 class Productserializer(serializers.ModelSerializer):

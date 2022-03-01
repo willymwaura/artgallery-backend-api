@@ -22,9 +22,7 @@ Vary: Accept
         "name": "science",
         "email": "wilsonmwaura697@gmail.com",
         "phonenumber": 400,
-        "accesstoken": "ggggg",
         "password":12324,
-        "refreshtoken": "gggggg",
         "role": "user"
     }
 ]
