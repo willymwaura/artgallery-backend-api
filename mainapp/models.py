@@ -4,7 +4,7 @@ class User(models.Model):
     name=models.CharField(max_length=100)
     email=models.EmailField(max_length=100)
     phonenumber=models.IntegerField()
-    password=models.IntegerField(default=1234)
+    password=models.IntegerField()
     role=models.CharField(max_length=10)
     def __str__(self):
         return '{}{}'.format(self.name,self.role)
@@ -14,7 +14,7 @@ class Product(models.Model):
     name=models.CharField(max_length=100)
     price=models.IntegerField(default=400)
     imageurl=models.ImageField(upload_to='images',blank=False)
-    description=models.CharField(max_length=100,default="lovely art")
+    description=models.CharField(max_length=100)
     category=models.CharField(max_length=100)
     designer=models.CharField(max_length=100)
    

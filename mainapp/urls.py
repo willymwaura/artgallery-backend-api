@@ -15,6 +15,4 @@ urlpatterns = [
     path('getuserid/<int:pk>',getuserbyid.as_view()),
     path('stk',views.stk,name='stk'),
     path('stk-push',views.stk_push_callback,name='stkpush')
-
-
 ]
