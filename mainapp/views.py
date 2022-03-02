@@ -13,7 +13,7 @@ class allproducts(APIView):
     def get(self,request):
         products=Product.objects.all()
         serializer=Productserializer(products,many=True)
-        return HttpResponse(serializer.data)
+        return Response(serializer.data)
 
     def post (self,request):
         serializer=Productserializer(data=request.data)
@@ -55,7 +55,7 @@ class addtocart(APIView):
         serializer=Cartserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return response(serializer.data)
+            return Response(serializer.data)
 
 class addnotification(APIView):
     def get(self,request):
@@ -67,7 +67,7 @@ class addnotification(APIView):
         serializer=Notificationserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return response(serializer.data)
+            return Response(serializer.data)
 class deletefromcart(APIView):
     def delete(Self,request,pk):
         product=Cart.objects.get(id=pk)

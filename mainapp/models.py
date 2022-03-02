@@ -5,7 +5,7 @@ class User(models.Model):
     email=models.EmailField(max_length=100)
     phonenumber=models.IntegerField()
     password=models.IntegerField()
-    role=models.CharField(max_length=10)
+    role=models.CharField(max_length=100)
     def __str__(self):
         return '{}{}'.format(self.name,self.role)
 
@@ -33,7 +33,7 @@ class Cart(models.Model):
         return '{}{}'.format(self.name,self.category)
 
 class Notification(models.Model):
-    designer=models.ForeignKey(User,related_name='note',on_delete=models.CASCADE)
+    designer=models.CharField(max_length=200)
     message=models.CharField(max_length=200)
     title=models.CharField(max_length=200)
 
