@@ -119,16 +119,10 @@ class lipa_na_mpesa(APIView):
             "Password": LipanaMpesaPpassword.decode_password,
             "Timestamp": LipanaMpesaPpassword.lipa_time,
             "TransactionType": "CustomerPayBillOnline",
-            #"Amount": 1,
             "Amount":Amount,
-            #"PartyA": 25412100378,  # replace with your phone number to get stk push
             "PartyA":phone,
-        
-            
             "PartyB": LipanaMpesaPpassword.Business_short_code,
-            #"PhoneNumber": 254112100378,  # replace with your phone number to get stk push
             "PhoneNumber":phone,
-           
             "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
             "AccountReference": "Art Gallery Software company",
             "TransactionDesc": "Testing stk push"
