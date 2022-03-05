@@ -40,6 +40,10 @@ class Notification(models.Model):
     def __str__(self):
         return '{}{}'.format(self.designer,self.title)
 
+class Mpesa(models.Model):
+    PhoneNumber=models.IntegerField()
+    Amount=models.IntegerField()
+
 
    
     

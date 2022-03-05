@@ -7,6 +7,11 @@ from rest_framework.views import Response
 from mainapp.models import Cart, Notification, User,Product
 from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer
 from django_daraja.mpesa.core import MpesaClient
+from django.http import HttpResponse
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+from . mpesa_credentials import MpesaAccessToken, LipanaMpesaPpassword
 
 # Create your views here.
 class allproducts(APIView):
@@ -92,19 +97,41 @@ class getuserbyid(APIView):
       return Response(serializers.data)
 
 
-def stk(request):
-    cl = MpesaClient()
-    mpesa_stk_push_callback='https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query'
-    # Use a Safaricom phone number that you have access to, for you to be able to view the prompt.
-    phone_number = '254112100378'
-    amount = 1
-    account_reference = 'reference'
-    transaction_desc = 'Description'
-    callback_url = mpesa_stk_push_callback
-    response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-    return HttpResponse(response)
+def getAccessToken(request):
+    consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
+    consumer_secret = '2nHEyWSD4VjpNh2g'
+    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+    mpesa_access_token = json.loads(r.text)
+    validated_mpesa_access_token = mpesa_access_token['access_token']
+    return HttpResponse(validated_mpesa_access_token)
+class lipa_na_mpesa(APIView):
+    def post(self,request):
+        Amount=request.data["Amount"]
+        phone=request.data['PhoneNumber']
+        access_token = MpesaAccessToken.validated_mpesa_access_token
+        
 
-def stk_push_callback(request):
-        data = request.body
-
-
+        api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+        headers = {"Authorization": "Bearer %s" % access_token}
+        request = {
+            "BusinessShortCode": LipanaMpesaPpassword.Business_short_code,
+            "Password": LipanaMpesaPpassword.decode_password,
+            "Timestamp": LipanaMpesaPpassword.lipa_time,
+            "TransactionType": "CustomerPayBillOnline",
+            #"Amount": 1,
+            "Amount":Amount,
+            #"PartyA": 25412100378,  # replace with your phone number to get stk push
+            "PartyA":phone,
+        
+            
+            "PartyB": LipanaMpesaPpassword.Business_short_code,
+            #"PhoneNumber": 254112100378,  # replace with your phone number to get stk push
+            "PhoneNumber":phone,
+           
+            "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
+            "AccountReference": "Art Gallery Software company",
+            "TransactionDesc": "Testing stk push"
+        }
+        response = requests.post(api_url, json=request, headers=headers)
+        return HttpResponse(response)
