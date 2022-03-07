@@ -11,7 +11,7 @@ from django.http import HttpResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
-from . mpesa_credentials import MpesaAccessToken, LipanaMpesaPpassword
+from  mainapp.mpesa_credentials import MpesaAccessToken, LipanaMpesaPpassword
 
 # Create your views here.
 class allproducts(APIView):
@@ -96,15 +96,15 @@ class getuserbyid(APIView):
       serializers=Userserializer(s,many=True)
       return Response(serializers.data)
 
-
-def getAccessToken(request):
-    consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
-    consumer_secret = '2nHEyWSD4VjpNh2g'
-    api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
-    r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
-    mpesa_access_token = json.loads(r.text)
-    validated_mpesa_access_token = mpesa_access_token['access_token']
-    return HttpResponse(validated_mpesa_access_token)
+class getAccessToken(APIView):
+    def post(self,request):
+        consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
+        consumer_secret = '2nHEyWSD4VjpNh2g'
+        api_URL = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+        r = requests.get(api_URL, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+        mpesa_access_token = json.loads(r.text)
+        validated_mpesa_access_token = mpesa_access_token['access_token']
+        return HttpResponse(validated_mpesa_access_token)
 class lipa_na_mpesa(APIView):
     def post(self,request):
         Amount=request.data["Amount"]
