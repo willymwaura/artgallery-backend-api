@@ -11,7 +11,7 @@ from django.http import HttpResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
-from  mpesa_credentials import LipanaMpesaPpassword , MpesaAccessToken,MpesaC2bCredential
+from  mainapp.mpesa_credentials import LipanaMpesaPpassword , MpesaAccessToken 
 
 # Create your views here.
 class allproducts(APIView):
@@ -96,7 +96,7 @@ class getuserbyid(APIView):
       serializers=Userserializer(s,many=True)
       return Response(serializers.data)
 
-class getAccessToken(APIView):
+class gettoken(APIView):
     def post(self,request):
         consumer_key = 'cHnkwYIgBbrxlgBoneczmIJFXVm0oHky'
         consumer_secret = '2nHEyWSD4VjpNh2g'
@@ -105,7 +105,7 @@ class getAccessToken(APIView):
         mpesa_access_token = json.loads(r.text)
         validated_mpesa_access_token = mpesa_access_token['access_token']
         return HttpResponse(validated_mpesa_access_token)
-class lipa_na_mpesa(APIView):
+class lipanampesa(APIView):
     def post(self,request):
         Amount=request.data["Amount"]
         phone=request.data['PhoneNumber']

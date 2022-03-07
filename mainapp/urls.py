@@ -1,7 +1,6 @@
 from django.urls import URLPattern, path
 from . import views
-from mainapp.views import allusers,allproducts, deletenotification,deleteuser,deleteproduct,addnotification,addtocart,deletefromcart, getproductid, getuserbyid,lipa_na_mpesa,getAccessToken
-
+from mainapp.views import allusers,allproducts, deletenotification,deleteuser,deleteproduct,addnotification,addtocart,deletefromcart, getproductid, getuserbyid,lipanampesa,gettoken
 urlpatterns = [
     path('users/',allusers.as_view()),
     path('products/',allproducts.as_view()),
@@ -13,7 +12,7 @@ urlpatterns = [
     path('deletenotification/<int:pk>',deletenotification.as_view()),
     path('getproductid/<int:pk>',getproductid.as_view()),
     path('getuserid/<int:pk>',getuserbyid.as_view()),
-    path('stk',getAccessToken.as_view()),
-    path('stkpush',lipa_na_mpesa.as_view())
+    path('stk',gettoken.as_view()),
+    path('stkpush',lipanampesa.as_view())
 
 ]
