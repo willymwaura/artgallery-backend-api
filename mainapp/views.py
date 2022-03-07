@@ -11,7 +11,7 @@ from django.http import HttpResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
-from  mainapp.mpesa_credentials import MpesaAccessToken, LipanaMpesaPpassword
+from  mpesa_credentials import LipanaMpesaPpassword , MpesaAccessToken,MpesaC2bCredential
 
 # Create your views here.
 class allproducts(APIView):

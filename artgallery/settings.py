@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3s+b!p72#n*v#7$i8b7t4_!4owq&_75(3zzfe1n_$hp$%r!i*d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["artbackend.smiley-geek-codes.tech",'127.0.0.1','localhost',"artgallerylive.herokuapp.com","django_restframework"]
+ALLOWED_HOSTS = ["artbackend.smiley-geek-codes.tech",'127.0.0.1','localhost',"artgallerylive.herokuapp.com"]
 
 
 # Application definition
