@@ -80,4 +80,11 @@ users/
     getuserid/{user_id)
 	get:specific  user
     
-    NB:daraja api is being worked on 
+    stkpush
+    post request
+    {
+        "phoneNumber":254,
+        "Amount":12
+    }
+
+
