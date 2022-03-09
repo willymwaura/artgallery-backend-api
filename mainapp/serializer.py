@@ -24,3 +24,4 @@ class Mpesaserializer(serializers.ModelSerializer):
     class Meta:
         model=Mpesa
         fields='__all__'
+

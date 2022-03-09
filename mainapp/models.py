@@ -42,6 +42,8 @@ class Notification(models.Model):
 class Mpesa(models.Model):
     PhoneNumber=models.IntegerField()
     Amount=models.IntegerField()
+
+
    
     
 
