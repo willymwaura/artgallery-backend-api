@@ -1,5 +1,5 @@
 from rest_framework import  serializers
-from . models import Product,User,Notification,Cart
+from . models import Product,User,Notification,Cart,Mpesa
        
 class Productserializer(serializers.ModelSerializer):
     class Meta:
@@ -20,4 +20,7 @@ class Notificationserializer(serializers.ModelSerializer):
     class Meta:
         model=Notification
         fields='__all__'
-
+class Mpesaserializer(serializers.ModelSerializer):
+    class Meta:
+        model=Mpesa
+        fields='__all__'

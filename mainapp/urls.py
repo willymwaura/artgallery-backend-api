@@ -1,6 +1,6 @@
 from django.urls import URLPattern, path
 from . import views
-from mainapp.views import allusers,allproducts, deletenotification,deleteuser,deleteproduct,addnotification,addtocart,deletefromcart, getproductid, getuserbyid,lipanampesa,gettoken
+from mainapp.views import allusers,allproducts, deletenotification,deleteuser,deleteproduct,addnotification,addtocart,deletefromcart, getproductid, getuserbyid,lipanampesa,gettoken,LoginView
 urlpatterns = [
     path('users/',allusers.as_view()),
     path('products/',allproducts.as_view()),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('getproductid/<int:pk>',getproductid.as_view()),
     path('getuserid/<int:pk>',getuserbyid.as_view()),
     path('stk',gettoken.as_view()),
-    path('stkpush',lipanampesa.as_view())
+    path('stkpush',lipanampesa.as_view()),
+    path('login',LoginView.as_view())
 
 ]

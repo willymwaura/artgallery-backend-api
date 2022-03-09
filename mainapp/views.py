@@ -1,17 +1,29 @@
 
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, request, response
+from tkinter import Entry
+from unicodedata import name
+from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse, request, response
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.views import Response
-from mainapp.models import Cart, Notification, User,Product
-from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer
+from mainapp.models import Cart, Notification, User,Product,Mpesa
+from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer,Mpesaserializer
 from django_daraja.mpesa.core import MpesaClient
 from django.http import HttpResponse
 import requests
 from requests.auth import HTTPBasicAuth
 import json
 from  mainapp.mpesa_credentials import LipanaMpesaPpassword , MpesaAccessToken 
+from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
+from rest_framework.response import Response
+
 
 # Create your views here.
 class allproducts(APIView):
@@ -107,8 +119,17 @@ class gettoken(APIView):
         return HttpResponse(validated_mpesa_access_token)
 class lipanampesa(APIView):
     def post(self,request):
-        Amount=request.data["Amount"]
-        phone=request.data['PhoneNumber']
+        serializer=Mpesaserializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        Amount=Mpesa.objects.values_list('Amount',flat=True)
+        a=len(Amount)
+        Amount=Amount[a-1]
+        print(Amount)
+        phone=Mpesa.objects.values_list('PhoneNumber',flat=True)
+        b=len(phone)
+        phone=phone[b-a]
+        print(phone)
         access_token = MpesaAccessToken.validated_mpesa_access_token
         
 
@@ -129,3 +150,15 @@ class lipanampesa(APIView):
         }
         response = requests.post(api_url, json=request, headers=headers)
         return HttpResponse(response)
+
+class LoginView(APIView):
+    def post(self,request):
+        name = request.data["name"]
+        password = request.data["password"]
+        nam = User.objects.values_list('name',flat=True)
+        pas = User.objects.values_list('password',flat=True)
+        if name in nam and password in pas:
+            return HttpResponse(" login successs")
+        else:
+            return HttpResponse("fail")
+        
