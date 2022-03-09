@@ -1,6 +1,6 @@
 
-from tkinter import Entry
-from unicodedata import name
+
+
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse, request, response
 from rest_framework import serializers
@@ -16,13 +16,6 @@ import json
 from  mainapp.mpesa_credentials import LipanaMpesaPpassword , MpesaAccessToken 
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
-from rest_framework.status import (
-    HTTP_400_BAD_REQUEST,
-    HTTP_404_NOT_FOUND,
-    HTTP_200_OK
-)
-from rest_framework.response import Response
 
 
 # Create your views here.
