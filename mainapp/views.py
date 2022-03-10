@@ -146,14 +146,19 @@ class lipanampesa(APIView):
 
 class LoginView(APIView):
     def post(self,request):
-        received=request.data
-        name=received['name']
-        password=received['password']
-
-        nam = User.objects.values_list('name',flat=True)
-        pas = User.objects.values_list('password',flat=True)
-        if password in pas and name in nam:
-            return  HttpResponse("success")
+        if 'email' in request.data:
+            ema=request.data['email']
+        else :
+            ema=False
+        if 'password' in request.data:
+            pas=request.data['password']
+        else :
+            pas=False
+        email = User.objects.values_list('email',flat=True)
+        password = User.objects.values_list('password',flat=True)
+        
+        if ema in email and pas in password:
+            return HttpResponse("success")
         else:
-            return  HttpResponse("fail")
+            return HttpResponse("fail")
         

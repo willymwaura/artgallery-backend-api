@@ -44,7 +44,6 @@ class Mpesa(models.Model):
     Amount=models.IntegerField()
 
 
-   
     
 
 
