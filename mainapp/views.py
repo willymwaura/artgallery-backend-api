@@ -121,7 +121,7 @@ class lipanampesa(APIView):
         print(Amount)
         phone=Mpesa.objects.values_list('PhoneNumber',flat=True)
         b=len(phone)
-        phone=phone[b-a]
+        phone=phone[b-1]
         print(phone)
         access_token = MpesaAccessToken.validated_mpesa_access_token
         
