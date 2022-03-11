@@ -115,13 +115,10 @@ class lipanampesa(APIView):
         serializer=Mpesaserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        Amount=Mpesa.objects.values_list('Amount',flat=True)
-        a=len(Amount)
-        Amount=Amount[a-1]
+        
+        Amount=Mpesa.objects.last().Amount
         print(Amount)
-        phone=Mpesa.objects.values_list('PhoneNumber',flat=True)
-        b=len(phone)
-        phone=phone[b-1]
+        phone=Mpesa.objects.last().PhoneNumber
         print(phone)
         access_token = MpesaAccessToken.validated_mpesa_access_token
         
