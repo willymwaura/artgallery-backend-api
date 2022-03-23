@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django_daraja',
     'mainapp',
     'django.contrib.messages',
+    'corsheaders',
     'rest_framework',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOWED-OR
 
 ROOT_URLCONF = 'artgallery.urls'
 
