@@ -13,7 +13,7 @@ class User(models.Model):
 class Product(models.Model):
     name=models.CharField(max_length=100)
     price=models.IntegerField(default=400)
-    imageurl=models.ImageField(upload_to='images',blank=False)
+    imageurl=models.URLField(max_length=200)
     description=models.CharField(max_length=100)
     category=models.CharField(max_length=100)
     designer=models.CharField(max_length=100)
@@ -25,7 +25,7 @@ class Product(models.Model):
 class Cart(models.Model):
     name=models.CharField(max_length=100)
     price=models.IntegerField(default=400)
-    imageurl=models.ImageField(upload_to='images',blank=False)
+    imageurl=models.URLField(max_length=200)
     category=models.CharField(max_length=100)
     designer=models.CharField(max_length=100)
 
