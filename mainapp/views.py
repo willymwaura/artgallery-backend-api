@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.views import Response
 from mainapp.models import Cart, Notification, User,Product,Mpesa
-from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer,Mpesaserializer
+from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer,Mpesaserializer,Useserializer
 from django_daraja.mpesa.core import MpesaClient
 from django.http import HttpResponse
 import requests
@@ -156,11 +156,8 @@ class LoginView(APIView):
         
         if ema in email and pas in password:
             a=User.objects.get(email=ema)
-            b=User.objects.get(password=pas)
-            if a==b:
-                serializer=Userserializer(a)
-                return Response (serializer.data)
-            return HttpResponse("failed ")
+            serializer=Useserializer(a)
+            return Response (serializer.data)
 
 
         else:

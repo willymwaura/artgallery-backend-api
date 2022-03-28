@@ -7,10 +7,14 @@ class Productserializer(serializers.ModelSerializer):
         fields='__all__'
 
 
-class Userserializer(serializers.ModelSerializer):
+class Useserializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=['id','name','email','phonenumber','role']
+class Userserializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields='__all__'
 class Cartserializer(serializers.ModelSerializer):
     class Meta:
         model=Cart
