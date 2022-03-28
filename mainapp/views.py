@@ -155,7 +155,14 @@ class LoginView(APIView):
         password = User.objects.values_list('password',flat=True)
         
         if ema in email and pas in password:
-            return HttpResponse("success")
+            a=User.objects.get(email=ema)
+            b=User.objects.get(password=pas)
+            if a==b:
+                serializer=Userserializer(a)
+                return Response (serializer.data)
+            return HttpResponse("failed ")
+
+
         else:
             return HttpResponse("fail")
         
