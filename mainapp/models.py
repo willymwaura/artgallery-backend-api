@@ -29,6 +29,9 @@ class Cart(models.Model):
     imageurl=models.URLField(max_length=200)
     category=models.CharField(max_length=100)
     designer=models.CharField(max_length=100)
+    designer_id=models.IntegerField()
+    designer_name=models.CharField(max_length=100)
+    description=models.CharField(max_length=100)
 
     def __str__(self):
         return '{}{}'.format(self.name,self.category)
