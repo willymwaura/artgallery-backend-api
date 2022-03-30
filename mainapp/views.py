@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.views import Response
 from mainapp.models import Cart, Notification, User,Product,Mpesa
-from mainapp.serializer import Userserializer,Productserializer,Cartserializer,Notificationserializer,Mpesaserializer,Useserializer
+from mainapp.serializer import Cartserializerid, Userserializer,Productserializer,Cartserializer,Notificationserializer,Mpesaserializer,Useserializer
 from django_daraja.mpesa.core import MpesaClient
 from django.http import HttpResponse
 import requests
@@ -163,3 +163,8 @@ class LoginView(APIView):
         else:
             return HttpResponse("fail")
         
+class getcartid(APIView):
+   def get(self,request,pk):
+      s=Cart.objects.filter(user_id=pk)
+      serializers=Cartserializerid(s,many=True)
+      return Response(serializers.data)

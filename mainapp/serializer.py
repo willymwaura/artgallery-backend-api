@@ -19,6 +19,10 @@ class Cartserializer(serializers.ModelSerializer):
     class Meta:
         model=Cart
         fields='__all__'
+class Cartserializerid(serializers.ModelSerializer):
+    class Meta:
+        model=Cart
+        fields=['id','category','description','designer_id','designer_name','imageurl','name','price']
 
 class Notificationserializer(serializers.ModelSerializer):
     class Meta:
