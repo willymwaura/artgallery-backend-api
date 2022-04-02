@@ -37,15 +37,18 @@ class Cart(models.Model):
         return '{}{}'.format(self.name,self.category)
 
 class Notification(models.Model):
-    designer=models.CharField(max_length=200)
     message=models.CharField(max_length=200)
     title=models.CharField(max_length=200)
+    user_id=models.IntegerField(null=True)
 
     def __str__(self):
         return '{}{}'.format(self.designer,self.title)
 class Mpesa(models.Model):
+    Amount=models.IntegerField(null=True)
     PhoneNumber=models.IntegerField()
-    Amount=models.IntegerField()
+    buyerid=models.IntegerField(null=True)
+    email=models.EmailField(default='sss@gmail.com')
+    pickupPoint=models.CharField(max_length=200,default='thika')
 
 
     

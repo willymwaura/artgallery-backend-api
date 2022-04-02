@@ -15,6 +15,7 @@ urlpatterns = [
     path('stk',gettoken.as_view()),
     path('stkpush',lipanampesa.as_view()),
     path('login',LoginView.as_view()),
-    path('cart/<int:pk>',getcartid.as_view())
+    path('cart/<int:pk>',getcartid.as_view()),
+    path('notification/<int:pk>',getcartid.as_view())
 
 ]

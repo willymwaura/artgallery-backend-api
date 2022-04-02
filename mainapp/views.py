@@ -27,8 +27,10 @@ class allproducts(APIView):
 
     def post (self,request):
         serializer=Productserializer(data=request.data)
+        price=request.data['price']
+        price=int(price*1.25)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(price=price)
             return Response(serializer.data)
         return Response(serializer.errors)
 
@@ -112,13 +114,16 @@ class gettoken(APIView):
         return HttpResponse(validated_mpesa_access_token)
 class lipanampesa(APIView):
     def post(self,request):
+        
+
         serializer=Mpesaserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
         
-        Amount=Mpesa.objects.last().Amount
-        print(Amount)
+        
         phone=Mpesa.objects.last().PhoneNumber
+        Amount=Mpesa.objects.last().Amount
+        Amount=Amount
         print(phone)
         access_token = MpesaAccessToken.validated_mpesa_access_token
         
@@ -167,4 +172,10 @@ class getcartid(APIView):
    def get(self,request,pk):
       s=Cart.objects.filter(user_id=pk)
       serializers=Cartserializerid(s,many=True)
+      return Response(serializers.data)
+
+class getnotificationid(APIView):
+   def get(self,request,pk):
+      s=Notification.objects.filter(user_id=pk)
+      serializers=Notificationserializer(s,many=True)
       return Response(serializers.data)

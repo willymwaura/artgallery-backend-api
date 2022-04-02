@@ -28,6 +28,10 @@ class Notificationserializer(serializers.ModelSerializer):
     class Meta:
         model=Notification
         fields='__all__'
+class Notificationserializerid(serializers.ModelSerializer):
+    class Meta:
+        model=Notification
+        fields=['id','title','message']
 class Mpesaserializer(serializers.ModelSerializer):
     class Meta:
         model=Mpesa
