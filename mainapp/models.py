@@ -42,7 +42,7 @@ class Notification(models.Model):
     user_id=models.IntegerField(null=True)
 
     def __str__(self):
-        return '{}{}'.format(self.designer,self.title)
+        return '{}{}'.format(self.title,self.title)
 class Mpesa(models.Model):
     Amount=models.IntegerField(null=True)
     PhoneNumber=models.IntegerField()
