@@ -28,7 +28,7 @@ class allproducts(APIView):
     def post (self,request):
         serializer=Productserializer(data=request.data)
         price=request.data['price']
-        price=int(price*1.25)
+        price=price+75
         if serializer.is_valid():
             serializer.save(price=price)
             return Response(serializer.data)
