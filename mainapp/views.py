@@ -138,7 +138,7 @@ class lipanampesa(APIView):
             "PartyB": LipanaMpesaPpassword.Business_short_code,
             "PhoneNumber":phone,
             "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-            "AccountReference": "Art Gallery Software company",
+            "AccountReference": "Art gallery software company",
             "TransactionDesc": "Testing stk push"
         }
         response = requests.post(api_url, json=request, headers=headers)
