@@ -22,7 +22,7 @@ class Cartserializer(serializers.ModelSerializer):
 class Cartserializerid(serializers.ModelSerializer):
     class Meta:
         model=Cart
-        fields=['id','category','description','designer_id','designer_name','imageurl','name','price']
+        fields=['id','category','description','designer_id','designer_name','imageurl','name','price','product_id']
 
 class Notificationserializer(serializers.ModelSerializer):
     class Meta:

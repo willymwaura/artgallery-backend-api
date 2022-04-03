@@ -32,6 +32,7 @@ class Cart(models.Model):
     designer_name=models.CharField(max_length=100)
     description=models.CharField(max_length=100)
     user_id=models.IntegerField(null=True)
+    product_id=models.IntegerField(default=1)
 
     def __str__(self):
         return '{}{}'.format(self.name,self.category)
